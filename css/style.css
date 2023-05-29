@@ -1,0 +1,112 @@
+*{
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+body, input, button{
+    font-family:'Lucida Sans', sans-serif 
+}
+body{
+    background-color: rgb(235, 174, 117);
+    
+}
+
+/* LAYOUT */
+.container{
+    width: 40vw;
+    margin: auto;
+    /* border: 1px dashed blue; */
+}
+
+.row{
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+header{
+    background-color: rgb(255, 255, 255);
+    width: 100%;
+}
+
+.col-50{
+    width: calc(100% / 2 - 20);
+    margin: 10px;
+    /* border: 1px dashed black; */
+}
+/* FINE LAYOUT */
+
+
+/*  HEADER*/
+
+.left-header{
+    font-size: 30px;
+}
+
+.right-header{
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+#play{
+    font-size: 16px;
+    padding: 4px 15px 4px 15px;
+    border-radius: 20px;
+    border: 1.5px double black;
+    margin-left: 20px;
+    cursor: pointer;
+}
+#play:hover{
+    background-color: rgb(218, 214, 213);
+}
+
+#game-level{
+    padding: 4px 10px 4px 10px;
+    border: 1.5px double black;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+
+/* FINE HEADER*/
+
+
+/* MAIN */
+
+
+#container-grid{
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 50px;
+}
+.box{
+    width: calc(100% / 10);
+    border: 1px solid rgb(221, 221, 221);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.box:after{
+    content: "";
+    display: block;
+    padding-bottom: 100%;
+}
+
+.click-blu {
+    background-color: rgb(108, 47, 250);
+}
+/* FINE MAIN */
+
+/* FOOTER */
+
+/* footer{
+    background-color: rgb(236, 236, 236);
+    width: 100%;
+    position: fixed;
+    bottom: 0px;
+} */
+
+/* FINE FOOTER */
