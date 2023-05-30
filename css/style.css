@@ -88,6 +88,9 @@ header{
     align-items: center;
     cursor: pointer;
 }
+.bomb{
+    background-color: red ;
+}
 
 .box:after{
     content: "";
