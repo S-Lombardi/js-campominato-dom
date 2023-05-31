@@ -1,7 +1,7 @@
 "use strict"
 //DICHIARO FUNZIONE CHE GENERA UN NUMERO CASUALE
-function generateRandomNumber(max){
-    return Math.floor(Math.random() * max);
+function generateRandomNumber(max, min){
+    return Math.floor(Math.random() * (max - min +1) + min);
 }
 let punteggio = 0;
 //DICHIARO FUNZIONE PER SVUOTARE GRIGLIA
@@ -94,12 +94,12 @@ button_play.addEventListener("click", function(){
     for( let i=0; i<16 ; i++){
 
         //Chiamo la funzione che genera numeri random per 16 volte
-        let number = generateRandomNumber(n*n);
+        let number = generateRandomNumber(n*n,1);
 
         //finche l'array arrayBombs include il numero che ho appena generato ne genero
         //un altro, perche l'array non deve contenere duplicati
         while(arrayBombs.includes(number)) {
-            number = generateRandomNumber(n*n);
+            number = generateRandomNumber(n*n,1);
         }
         
         //inserisco i numeri nell' array
