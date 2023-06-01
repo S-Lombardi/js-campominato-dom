@@ -3,13 +3,14 @@
 function generateRandomNumber(max, min){
     return Math.floor(Math.random() * (max - min +1) + min);
 }
-let punteggio = 0;
 //DICHIARO FUNZIONE PER SVUOTARE GRIGLIA
 function resetGrid(){
     let container_grid = document.getElementById("container-grid");
     container_grid.innerHTML = " ";
     
 }
+
+let score ;
 
 //DICHIARO FUNZIONE PER CREARE LA GRIGLIA
 function makeGrid(n, arrayBombs){
@@ -31,34 +32,47 @@ function makeGrid(n, arrayBombs){
         square.innerHTML = i;
         
         //Recupero l'elemento in cui voglio inserire i quadrati
-        let container_grid = document.getElementById("container-grid");
+        const container_grid = document.getElementById("container-grid");
         
         
         //inserisco i quadrati nel dom
         container_grid.append(square);
     
-        
-        //Se l'array include uno dei numeri delle caselle 
+        //Se tra i numeri random(bombe) c'è uno dei numeri delle caselle 
         if(arrayBombs.includes(i)) {
-            
-            //colora la casella di rosso
+             
+            score = 0
+        
+            //colora la casella di rosso al click della casella
             square.addEventListener('click', function() {
                 this.classList.add("bomb");
-                alert("hai perso")
-              
+                alert("hai perso");
+                
+                //tolgo il click alle caselle
+                square.replaceWith(square.cloneNode(true));
+                
+                //punteggio
+                container_grid.classList.add("stop-game");
+                container_score.innerHTML = `<div>${score} è il tuo punteggio</div>`;
+                
+                let boxes = document.getElementsByClassName("box");
 
+                for(let j = 0; j < boxes.length; j++) {
+                    boxes[j].replaceWith(boxes[j].cloneNode(true));
+                }
             });
+        
+        
         } else{
             //altrimenti colora la casella di azzurro
             square.addEventListener('click', function(){
                 this.classList.add("click-blu");
-                console.log(i);
-                
+                //tolgo il click alle caselle
+                square.replaceWith(square.cloneNode(true));
+                score++;
             });
-
-        }
-            
         
+        }
         
         
     }
@@ -66,17 +80,23 @@ function makeGrid(n, arrayBombs){
 }
 
 
+//Recupero contenitore per inerire il punteggio
+const container_score = document.getElementById('container-score');
+
+
 //Recupero il pulsante del dom che al click genera la griglia
 let button_play = document.getElementById("play");
 
-//inserisco le griglie all'evento click del pulsante Play
 button_play.addEventListener("click", function(){
     
     //Recupero i valori della select
     let level = document.getElementById("game-level").value;
-
-    //Cambio numero di caselle a seconda del livello scelto
+    
+    //Creo array vuoto in cui inserirò i 16 numeri random
+    let arrayBombs = [];
+    //definisco n
     let n;
+    //Cambio numero di caselle a seconda del livello scelto
     if (level === "1") {
         n = 10;
     }
@@ -86,13 +106,8 @@ button_play.addEventListener("click", function(){
     }else {
         n = 7;
     }
-
-    //Creo array vuoto in cui inserirò i 16 numeri random
-    let arrayBombs = [];
-    
     
     for( let i=0; i<16 ; i++){
-
         //Chiamo la funzione che genera numeri random per 16 volte
         let number = generateRandomNumber(n*n,1);
 
