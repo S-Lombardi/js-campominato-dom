@@ -119,6 +119,9 @@ button_play.addEventListener("click", function(){
         
         //inserisco i numeri nell' array
         arrayBombs.push(number);
+
+        //Svuota il contenitore punteggio
+        container_score.innerHTML = " ";
     }
 
     //Creo la griglia con n caselle e l'array delle bombe
